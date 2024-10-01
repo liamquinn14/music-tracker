@@ -46,7 +46,7 @@ def test_intentional_duplicate():
     music_tracker.add_track(new_track1)
     new_track2 = Track("ABBA", "Waterloo")
     music_tracker.add_duplicate_track(new_track2)
-    assert music_tracker.list_tracks() == ["Waterloo by ABBA", "Waterloo by ABBA"]
+    assert music_tracker.tracks == [new_track1, new_track2]
 
 def test_add_non_duplicate_as_duplicate():
     # Potentially unnecessary since it could be handled client side, only allowing the 'add_duplicate_track' method if the user tries to add a duplicate using the 'add_track' method

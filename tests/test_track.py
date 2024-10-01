@@ -17,15 +17,13 @@ def test_format_track_info():
 
 def test_empty_artist():
     with pytest.raises(Exception) as e:
-        new_track = Track("", "Waterloo")
-        new_track.format_track_info()
+        Track("", "Waterloo")
     error_message = str(e.value)
     assert error_message == "Artist field empty. Please provide a valid artist name."
 
 def test_empty_title():
     with pytest.raises(Exception) as e:
-        new_track = Track("ABBA", "")
-        new_track.format_track_info()
+        Track("ABBA", "")
     error_message = str(e.value)
     assert error_message == "Track title field empty. Please provide a valid track title."
 
@@ -35,8 +33,7 @@ def test_empty_title():
 
 def test_special_character_in_artist():
     with pytest.raises(Exception) as e:
-        new_track = Track("ABBA!!!", "Waterloo")
-        new_track.format_track_info()
+        Track("ABBA!!!", "Waterloo")
     error_message = str(e.value)
     assert error_message == "Artist name contains special characters. Please provide a valid artist name."
 
@@ -46,15 +43,13 @@ def test_special_character_in_title():
 
 def test_emoji_in_artist():
     with pytest.raises(Exception) as e:
-        new_track = Track("Emoji ABBA😊", "Waterloo")
-        new_track.format_track_info()
+        Track("Emoji ABBA😊", "Waterloo")
     error_message = str(e.value)
     assert error_message == "Track artist contains an emoji. Please provide a valid artist name."
 
 def test_emoji_in_title():
     with pytest.raises(Exception) as e:
-        new_track = Track("ABBA", "Emoji Waterloo😊")
-        new_track.format_track_info()
+        Track("ABBA", "Emoji Waterloo😊")
     error_message = str(e.value)
     assert error_message == "Track title contains an emoji. Please provide a valid track title."
 
