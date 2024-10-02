@@ -22,6 +22,3 @@ class MusicTracker():
         all_artists = [track.artist for track in self.tracks]
         return list(set(all_artists))
     
-    def __eq__(self, other):
-        return self.__dict__ == other.__dict__
-    
