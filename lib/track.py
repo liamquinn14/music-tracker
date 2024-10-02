@@ -35,3 +35,6 @@ class Track():
     
     def format_track_info(self):
         return f"{self.title} by {self.artist}"
+    
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
