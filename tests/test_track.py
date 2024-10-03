@@ -29,18 +29,6 @@ def test_empty_title():
 
 # Think about other interesting edge cases when it comes to strings. Can you store/retrieve special characters? What about emoji?
 
-# I've seen song titles with special characters in. But not an artist name? I'll assume for now that artist names with special characters are invalid but it's valid for song titles to contain special characters.
-
-def test_special_character_in_artist():
-    with pytest.raises(Exception) as e:
-        Track("ABBA!!!", "Waterloo")
-    error_message = str(e.value)
-    assert error_message == "Artist name contains special characters. Please provide a valid artist name."
-
-def test_special_character_in_title():
-    new_track = Track("ABBA", "Waterloo!!!")
-    assert new_track.format_track_info() == "Waterloo!!! by ABBA"
-
 def test_emoji_in_artist():
     with pytest.raises(Exception) as e:
         Track("Emoji ABBA😊", "Waterloo")
@@ -58,7 +46,7 @@ def test_emoji_in_title():
 # There are practical limits with extremely long track names. My research found that there have been instances where long track names (over 140 characters) caused crashes in iTunes. For now I'll assume that 140 characters is a reasonable limit for artist/track names.
 
 def test_too_long_artist_names():
-    long_artist_name = "Lorem ipsum dolor sit amet consectetur adipiscing elit Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation ullamco laboris lorem ipsum dolor sit amet"
+    long_artist_name = "X" * 141
     assert len(long_artist_name) > 140
     with pytest.raises(Exception) as e:
         new_track = Track(long_artist_name, "Waterloo")
@@ -67,7 +55,7 @@ def test_too_long_artist_names():
     assert error_message == "Artist name is too long. Please provide an artist name containing no more than 140 characters."
 
 def test_too_long_track_names():
-    long_track_name = "Lorem ipsum dolor sit amet consectetur adipiscing elit Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation ullamco laboris lorem ipsum dolor sit amet"
+    long_track_name = "X" * 141
     assert len(long_track_name) > 140
     with pytest.raises(Exception) as e:
         new_track = Track("ABBA", long_track_name)

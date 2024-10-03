@@ -1,16 +1,9 @@
-import re
 import emoji
 
 def contains_emoji(text):
     for character in text:
         if character in emoji.EMOJI_DATA:
             return True
-    return False
-
-def has_special_characters(s):
-    pattern = r'[^a-zA-Z0-9\s]'
-    if re.search(pattern, s):
-        return True
     return False
 
 class Track():
@@ -24,8 +17,6 @@ class Track():
             raise Exception("Track artist contains an emoji. Please provide a valid artist name.")
         elif contains_emoji(song_title):
             raise Exception("Track title contains an emoji. Please provide a valid track title.")
-        elif has_special_characters(artist):
-            raise Exception("Artist name contains special characters. Please provide a valid artist name.")
         elif len(artist) > 140:
             raise Exception("Artist name is too long. Please provide an artist name containing no more than 140 characters.")
         elif len(song_title) > 140:
